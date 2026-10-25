@@ -103,7 +103,6 @@ All settings are in the `CONFIG` object at the top of `Code.gs`. Run `selfTest()
 
 ## 作った人
 Reypage｜GAS業務自動化
-https://reypage.pages.dev/automation/
 
 ## ライセンス
 MIT（LICENSE を参照）
