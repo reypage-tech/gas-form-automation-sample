@@ -1,5 +1,16 @@
 # gas-form-automation-sample
 
+## In English
+
+A Google Apps Script sample that handles a Google Form contact form for a fictional pilates studio.
+Each submission is added as a row in a spreadsheet, and the sender gets an auto-reply. Invalid addresses and send failures are written to a note column instead.
+A status column uses a dropdown (new, in progress, done). At 08:00 the owner gets one email with new inquiries by topic and the inquiries not yet done.
+How to try it:
+1. Create a new project at script.google.com and paste the contents of `Code.gs`. Settings are in `CONFIG` at the top.
+2. Run `selfTest()` and allow the permissions. It creates the form, the sheet and the triggers and logs OK / NG per check.
+3. Submit the form once, then run `checkFormSubmit()`.
+4. Local tests with mocked Google services: `node test/run.js`. The sample has been checked with these local tests only.
+
 Google フォームの問い合わせを Google Apps Script で自動処理するサンプルです。架空のピラティススタジオの問い合わせフォームを例にしています。
 
 ## 処理の内容
@@ -92,7 +103,7 @@ A small Google Apps Script project for a contact form (fictional pilates studio)
 - Google Form submission to a new row in a spreadsheet
 - Instant auto-reply to the sender; invalid addresses and send failures are logged in a note column instead of stopping the script
 - Status column with a dropdown (new / in progress / done)
-- Daily summary email to the owner at 08:00 with new inquiries by topic and every inquiry not marked done
+- Summary email to the owner at 08:00 with new inquiries by topic and every inquiry not marked done
 
 All settings are in the `CONFIG` object at the top of `Code.gs`. Run `selfTest()` to create the form, the sheet and the triggers and print OK / NG per check, then submit the form once and run `checkFormSubmit()` to confirm the submit trigger. Pure helper functions and the check flow are covered by Node.js tests with mocked Google services (`node test/local_test.js`, `node test/gas_flow_test.js`). It has so far been checked only with this local test; screenshots from a real Google account will be added after that check.
 
