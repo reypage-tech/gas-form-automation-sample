@@ -1,17 +1,12 @@
-# gas-form-automation-sample
+# 問い合わせフォームの受付・返信・記録の自動化（Google Apps Script）
 
-## In English
+小さな店の問い合わせ担当者向け。Google フォームに届いた問い合わせを、シートへの記録と受付の自動返信まで送信時に済ませ、朝8時に未対応の一覧を1通のメールで届けます。
 
-A Google Apps Script sample that handles a Google Form contact form for a fictional pilates studio.
-Each submission is added as a row in a spreadsheet, and the sender gets an auto-reply. Invalid addresses and send failures are written to a note column instead.
-A status column uses a dropdown (new, in progress, done). At 08:00 the owner gets one email with new inquiries by topic and the inquiries not yet done.
-How to try it:
-1. Create a new project at script.google.com and paste the contents of `Code.gs`. Settings are in `CONFIG` at the top.
-2. Run `selfTest()` and allow the permissions. It creates the form, the sheet and the triggers and logs OK / NG per check.
-3. Submit the form once, then run `checkFormSubmit()`.
-4. Local tests with mocked Google services: `node test/run.js`. The sample has been checked with these local tests only.
+![テストの実行結果（模擬環境での出力）](docs/test_output.png)
 
-Google フォームの問い合わせを Google Apps Script で自動処理するサンプルです。架空のピラティススタジオの問い合わせフォームを例にしています。
+上の画像は、Google のサービスを偽物に置き換えた模擬環境で `node test/run.js` を実行したときの実際の出力です（店名・人物は架空）。本物の Google アカウントでの画面はまだありません。
+
+変わること：問い合わせを手でシートに写して返信していた作業が、フォーム送信と同時の自動記録と自動返信になります。
 
 ## 処理の内容
 
@@ -36,8 +31,8 @@ Google フォームの問い合わせを Google Apps Script で自動処理す�
 | 関数 | 役割 |
 |---|---|
 | `setup()` | フォーム、記録用のスプレッドシート、2つのトリガー（フォーム送信時・毎朝）を作る。作成済みなら作り直さず、トリガーだけ作り直す |
-| `onFormSubmit(e)` | フォーム送信時に動く。自動返信を送り、シートに記録する |
-| `sendDailySummary()` | 毎朝動く。新着と未完了の一覧をメールで送る |
+| `onFormSubmit(e)` | フォーム送信時に実行される。自動返信を送り、シートに記録する |
+| `sendDailySummary()` | 毎朝8時に実行される。新着と未完了の一覧をメールで送る |
 | `removeTriggers()` | このプロジェクトのトリガーをすべて削除する |
 | `resetSample()` | 覚えているフォームとシートの ID とトリガーを消す。次の `setup()` で新しく作り直す |
 | `selfTest()` | `setup()` を行い、シート・フォーム・トリガー・自動返信・毎朝の一覧を確かめて、項目ごとに OK / NG を実行ログに出す |
