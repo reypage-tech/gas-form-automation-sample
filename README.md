@@ -74,15 +74,7 @@ node test/run.js
 - `selfTest()` がすべて OK になり、2回目の実行ではフォームとシートを作り直さない。実行ログにメールアドレスを出さない
 - フォームから送る前の `checkFormSubmit()` は NG を出し、送ったあとは OK になる
 
-現時点では、このローカルのテストで処理を確かめた段階です。Google 上で動かしたときの画面（下記）は、確認が済んでから追加します。
-
-## スクリーンショット（追加予定）
-
-- フォームの入力画面
-- 記録用のスプレッドシート（状況のプルダウンを含む）
-- 送信者に届く自動返信メール
-- 担当者に届く毎朝の一覧メール
-- トリガーの設定画面
+現時点では、このローカルのテストで処理を確かめた段階です。Google上での動作は、手順5・6の selfTest と checkFormSubmit で確かめられます。
 
 ## 注意
 
@@ -100,10 +92,9 @@ A small Google Apps Script project for a contact form (fictional pilates studio)
 - Status column with a dropdown (new / in progress / done)
 - Summary email to the owner at 08:00 with new inquiries by topic and every inquiry not marked done
 
-All settings are in the `CONFIG` object at the top of `Code.gs`. Run `selfTest()` to create the form, the sheet and the triggers and print OK / NG per check, then submit the form once and run `checkFormSubmit()` to confirm the submit trigger. Pure helper functions and the check flow are covered by Node.js tests with mocked Google services (`node test/local_test.js`, `node test/gas_flow_test.js`). It has so far been checked only with this local test; screenshots from a real Google account will be added after that check.
+All settings are in the `CONFIG` object at the top of `Code.gs`. Run `selfTest()` to create the form, the sheet and the triggers and print OK / NG per check, then submit the form once and run `checkFormSubmit()` to confirm the submit trigger. Pure helper functions and the check flow are covered by Node.js tests with mocked Google services (`node test/local_test.js`, `node test/gas_flow_test.js`). It has been checked with these local tests only.
 
 ## 作りの工夫
-- テスト：`node test/run.js`（Google のサービスを偽物に置き換えて Node.js で動かします）
 - 二重処理の防ぎ方：setup() はフォームとシートが作成済みなら作り直さず、トリガーだけ作り直す（Code.gs の setup と openOrNull_）
 - 6分制限：フォーム送信ごとの短い処理と、毎朝1回のまとめ（sendDailySummary）に分けている
 
