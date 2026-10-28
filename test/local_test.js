@@ -1,4 +1,5 @@
 // Google のサービスを簡単な偽物に置き換えて、Code.gs の処理を Node で確かめる。
+require('./fake_utilities.js');
 // 実行: node test/local_test.js
 const assert = require('assert');
 const fs = require('fs');

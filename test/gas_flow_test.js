@@ -1,4 +1,5 @@
 // selfTest() と checkFormSubmit() の流れを、Google のサービスの偽物で Node 上で通す。
+require('./fake_utilities.js');
 // 本物の Google での動きは確かめられない（トリガーが実際に動くか、権限の画面など）。
 // 実行: node test/gas_flow_test.js
 const assert = require('assert');

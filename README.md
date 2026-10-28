@@ -25,6 +25,7 @@
 | `appsscript.json` | タイムゾーン（Asia/Tokyo）、V8 ランタイム、必要な権限 |
 | `test/local_test.js` | Google のサービスを簡単な偽物に置き換えて、Node.js で処理を確かめるテスト |
 | `test/gas_flow_test.js` | 同じく偽物を使って、`selfTest()` と `checkFormSubmit()` の流れを確かめるテスト |
+| `test/fake_utilities.js` | テスト用の `Utilities.formatDate` の偽物。指定のタイムゾーンで日時を表示する |
 
 ## 主な関数
 
